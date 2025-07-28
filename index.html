@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>朱恩熙，不要伤心</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Source+Code+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e6f7ff;
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(13, 19, 33, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(92, 129, 255, 0.2);
+        }
+        
+        .header {
+            text-align: center;
+            padding: 60px 30px;
+            background: linear-gradient(45deg, #5d3fd3, #1e40af);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+            z-index: 0;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(147, 197, 253, 0.7);
+            letter-spacing: 2px;
+            background: linear-gradient(to right, #fbcfe8, #a5b4fc, #67e8f9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(147, 197, 253, 0.7); }
+            to { text-shadow: 0 0 30px rgba(147, 197, 253, 0.9), 0 0 40px rgba(147, 197, 253, 0.6); }
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: #c7d2fe;
+        }
+        
+        .divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #818cf8, #60a5fa, #38bdf8, #60a5fa, #818cf8, transparent);
+            margin: 30px 0;
+            border-radius: 3px;
+        }
+        
+        .languages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 30px;
+        }
+        
+        .language-card {
+            background: rgba(30, 41, 59, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .language-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
+            border-color: rgba(96, 165, 250, 0.6);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: rgba(30, 58, 138, 0.4);
+            border-bottom: 1px solid rgba(96, 165, 250, 0.2);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+        
+        .python-bg { background: linear-gradient(135deg, #306998, #4B8BBE); }
+        .js-bg { background: linear-gradient(135deg, #F0DB4F, #F7DF1E); color: #323330; }
+        .java-bg { background: linear-gradient(135deg, #5382A1, #007396); }
+        .cpp-bg { background: linear-gradient(135deg, #649AD2, #00599C); }
+        .ruby-bg { background: linear-gradient(135deg, #CC342D, #A02C2D); }
+        .go-bg { background: linear-gradient(135deg, #00ADD8, #007D9C); }
+        .rust-bg { background: linear-gradient(135deg, #000000, #DEA584); }
+        .swift-bg { background: linear-gradient(135deg, #F05138, #FA9C1D); }
+        .kotlin-bg { background: linear-gradient(135deg, #7F52FF, #0095D5); }
+        .php-bg { background: linear-gradient(135deg, #777BB3, #4F5B93); }
+        
+        .language-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .code-container {
+            padding: 25px;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 1.1rem;
+            overflow-x: auto;
+            background: rgba(15, 23, 42, 0.7);
+        }
+        
+        .code-block {
+            padding: 20px;
+            border-radius: 10px;
+            background: #0f172a;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(100, 116, 139, 0.3);
+            line-height: 1.8;
+        }
+        
+        .comment { color: #94a3b8; font-style: italic; }
+        .keyword { color: #f472b6; }
+        .string { color: #86efac; }
+        .function { color: #93c5fd; }
+        .variable { color: #fdba74; }
+        .operator { color: #c084fc; }
+        .punctuation { color: #cbd5e1; }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(15, 23, 42, 0.5);
+            border-top: 1px solid rgba(96, 165, 250, 0.2);
+        }
+        
+        .message {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #c7d2fe;
+            font-weight: 300;
+        }
+        
+        .heart {
+            color: #f87171;
+            animation: heartbeat 1.2s infinite;
+            display: inline-block;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .signature {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            .subtitle { font-size: 1.4rem; }
+            .languages-grid { grid-template-columns: 1fr; }
+            .language-name { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>朱恩熙，不要伤心</h1>
+                <p class="subtitle">多语言实现 | 精心设计 | 专属讯息</p>
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="languages-grid">
+            <!-- Python -->
+            <div class="language-card">
+                <div class="card-header">
+                    <div class="card-icon python-bg">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <div class="language-name">Python</div>
+                </div>
+                <div class="code-container">
+                    <pre class="code-block"><span class="comment"># 简洁优雅的Python实现</span>
+<span class="keyword">def</span> <span class="function">main</span>():
+    name = <span class="string">"朱恩熙"</span>
+    message = <span class="string">"不要伤心"</span>
+    <span class="function">print</span>(<span class="string">f"{name}，{message}"</span>)
+
+<span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:
+    <span class="function">main</span>()</pre>
+                </div>
+            </div>
+            
+            <!-- JavaScript -->
+            <div class="language-card">
+                <div class="card-header">
+                    <div class="card-icon js-bg">
+                        <i class="fab fa-js"></i>
+                    </div>
+                    <div class="language-name">JavaScript</div>
+                </div>
+                <div class="code-container">
+                    <pre class="code-block"><span class="comment">// 现代JavaScript实现</span>
+<span class="keyword">const</span> <span class="function">displayMessage</span> = () => {
+    <span class="keyword">const</span> <span class="variable">recipient</span> = <span class="string">'朱恩熙'</span>;
+    <span class="keyword">const</span> <span class="variable">message</span> = <span class="string">'不要伤心'</span>;
+    
+    console.<span class="function">log</span>(`${<span class="variable">recipient</span>}，${<span class="variable">message</span>}`);
+};
+
+<span class="function">displayMessage</span>();</pre>
+                </div>
+            </div>
+            
+            <!-- Java -->
+            <div class="language-card">
+                <div class="card-header">
+                    <div class="card-icon java-bg">
+                        <i class="fab fa-java"></i>
+                    </div>
+                    <div class="language-name">Java</div>
+                </div>
+                <div class="code-container">
+                    <pre class="code-block"><span class="comment">// 经典的Java实现</span>
+<span class="keyword">public class</span> <span class="function">SpecialMessage</span> {
+    <span class="keyword">public static void</span> <span class="function">main</span>(String[] args) {
+        String name = <span class="string">"朱恩熙"</span>;
+        String message = <span class="string">"不要伤心"</span>;
+        
+        System.<span class="variable">out</span>.<span class="function">println</span>(name + <span class="string">"，"</span> + message);
+    }
+}</pre>
+                </div>
+            </div>
+            
+            <!-- C++ -->
+            <div class="language-card">
+                <div class="card-header">
+                    <div class="card-icon cpp-bg">
+                        <i class="fas fa-copyright"></i>
+                    </div>
+                    <div class="language-name">C++</div>
+                </div>
+                <div class="code-container">
+                    <pre class="code-block"><span class="comment">// C++高效实现</span>
+<span class="keyword">#include</span> &lt;iostream&gt;
+<span class="keyword">#include</span> &lt;string&gt;
+
+<span class="keyword">using namespace</span> std;
+
+<span class="keyword">int</span> <span class="function">main</span>() {
+    string name = <span class="string">"朱恩熙"</span>;
+    string message = <span class="string">"不要伤心"</span>;
+    
+    cout << name << <span class="string">"，"</span> << message << endl;
+    <span class="keyword">return</span> <span class="number">0</span>;
+}</pre>
+                </div>
+            </div>
+            
+            <!-- Ruby -->
+            <div class="language-card">
+                <div class="card-header">
+                    <div class="card-icon ruby-bg">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="language-name">Ruby</div>
+                </div>
+                <div class="code-container">
+                    <pre class="code-block"><span class="comment"># Ruby简洁实现</span>
+<span class="keyword">def</span> <span class="function">show_message</span>
+    name = <span class="string">"朱恩熙"</span>
+    message = <span class="string">"不要伤心"</span>
+    puts <span class="string">"#{name}，#{message}"</span>
+<span class="keyword">end</span>
+
+<span class="function">show_message</span></pre>
+                </div>
+            </div>
+            
+            <!-- Go -->
+            <div class="language-card">
+                <div class="card-header">
+                    <div class="card-icon go-bg">
+                        <i class="fab fa-golang"></i>
+                    </div>
+                    <div class="language-name">Go</div>
+                </div>
+                <div class="code-container">
+                    <pre class="code-block"><span class="comment">// Go语言实现</span>
+<span class="keyword">package</span> main
+
+<span class="keyword">import</span> <span class="string">"fmt"</span>
+
+<span class="keyword">func</span> <span class="function">main</span>() {
+    name := <span class="string">"朱恩熙"</span>
+    message := <span class="string">"不要伤心"</span>
+    
+    fmt.<span class="function">Printf</span>(<span class="string">"%s，%s\n"</span>, name, message)
+}</pre>
+                </div>
+            </div>
+            
+            <!-- Rust -->
+            <div class="language-card">
+                <div class="card-header">
+                    <div class="card-icon rust-bg">
+                        <i class="fas fa-crab"></i>
+                    </div>
+                    <div class="language-name">Rust</div>
+                </div>
+                <div class="code-container">
+                    <pre class="code-block"><span class="comment">// Rust安全实现</span>
+<span class="keyword">fn</span> <span class="function">main</span>() {
+    <span class="keyword">let</span> name = <span class="string">"朱恩熙"</span>;
+    <span class="keyword">let</span> message = <span class="string">"不要伤心"</span>;
+    
+    println!(<span class="string">"{}，{}"</span>, name, message);
+}</pre>
+                </div>
+            </div>
+            
+            <!-- Swift -->
+            <div class="language-card">
+                <div class="card-header">
+                    <div class="card-icon swift-bg">
+                        <i class="fab fa-swift"></i>
+                    </div>
+                    <div class="language-name">Swift</div>
+                </div>
+                <div class="code-container">
+                    <pre class="code-block"><span class="comment">// Swift现代实现</span>
+<span class="keyword">import</span> Foundation
+
+<span class="keyword">func</span> <span class="function">displayMessage</span>() {
+    <span class="keyword">let</span> name = <span class="string">"朱恩熙"</span>
+    <span class="keyword">let</span> message = <span class="string">"不要伤心"</span>
+    
+    <span class="function">print</span>(<span class="string">"\(name)，\(message)"</span>)
+}
+
+<span class="function">displayMessage</span>()</pre>
+                </div>
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <div class="footer">
+            <p class="message">朱恩熙，不要伤心 <span class="heart">❤</span></p>
+            <div class="signature">ding2025版权所有</div>
+        </div>
+    </div>
+    
+    <script>
+        // 添加卡片悬停效果增强
+        document.querySelectorAll('.language-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const icon = card.querySelector('.card-icon');
+                icon.style.transform = 'rotate(10deg) scale(1.1)';
+                icon.style.transition = 'transform 0.3s ease';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                const icon = card.querySelector('.card-icon');
+                icon.style.transform = 'rotate(0deg) scale(1)';
+            });
+        });
+        
+        // 添加背景星星效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.container');
+            const starCount = 30;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.style.position = 'absolute';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.background = '#ffffff';
+                star.style.borderRadius = '50%';
+                star.style.boxShadow = '0 0 10px rgba(255, 255, 255, 0.8)';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.opacity = Math.random() * 0.8 + 0.2;
+                star.style.animation = `twinkle ${Math.random() * 5 + 3}s infinite alternate`;
+                
+                container.appendChild(star);
+            }
+            
+            // 添加CSS动画
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes twinkle {
+                    0% { opacity: 0.2; }
+                    100% { opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>
